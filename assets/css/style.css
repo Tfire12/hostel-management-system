@@ -1,0 +1,25 @@
+body {
+    background-color: #f8f9fa;
+}
+.card {
+    margin-top: 50px;
+}
+
+.nav-link {
+    transition: background-color 0.3s, padding-left 0.3s;
+}
+.nav-link:hover {
+    background-color: #0d6efd;
+    padding-left: 10px;
+}
+@media (max-width: 768px) {
+    #sidebarMenu {
+        width: 70px;
+    }
+    #sidebarMenu .nav-link span {
+        display: none;
+    }
+    #sidebarMenu .fs-4 {
+        font-size: 1.2rem;
+    }
+}
