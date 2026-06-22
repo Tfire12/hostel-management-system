@@ -129,8 +129,8 @@ if (isset($_POST['update_profile'])) {
                         <label>Phone</label>
                         <input type="text" name="phone" class="form-control"
                                value="<?php echo htmlspecialchars($student['phone']); ?>"
-                               pattern="[0-9]{9,12}" required>
-                        <small class="text-muted">9–12 digits only</small>
+                               pattern="[0-9]{10}" required maxlength="10" minlength="10">
+                        <small class="text-muted">10 digits only</small>
                     </div>
 
                     <div class="mb-3">
@@ -153,8 +153,8 @@ if (isset($_POST['update_profile'])) {
 function validateProfileForm() {
     let phone = document.querySelector("input[name='phone']").value;
 
-    if (!/^[0-9]{9,12}$/.test(phone)) {
-        alert("Phone must be 9–12 digits only");
+    if (!/^[0-9]{10}$/.test(phone)) {
+        alert("Phone must be 10 digits only");
         return false;
     }
     return true;

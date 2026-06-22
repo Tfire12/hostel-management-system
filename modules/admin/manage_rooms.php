@@ -13,6 +13,7 @@ if (!isset($_SESSION['user']) || $_SESSION['role'] != "admin") {
 // Handle add room
 if (isset($_POST['add_room'])) {
     $room_number = trim($_POST['room_number']);
+    $room_type = trim($_POST['room_type']);
     $capacity = intval($_POST['capacity']);
 
     // Check duplicate room number
@@ -20,7 +21,7 @@ if (isset($_POST['add_room'])) {
     if ($check->num_rows > 0) {
         $error = "Room number already exists!";
     } else {
-        $sql = "INSERT INTO rooms (room_number, capacity) VALUES ('$room_number', '$capacity')";
+        $sql = "INSERT INTO rooms (room_number, room_type, capacity) VALUES ('$room_number', '$room_type', '$capacity')";
         if ($conn->query($sql) === TRUE) {
             $success = "Room added successfully!";
         } else {
@@ -33,6 +34,7 @@ if (isset($_POST['add_room'])) {
 if (isset($_POST['update_room'])) {
     $id = intval($_POST['room_id']);
     $room_number = trim($_POST['room_number']);
+    $room_type = trim($_POST['room_type']);
     $capacity = intval($_POST['capacity']);
 
     // Check duplicate room number (excluding current room)
@@ -40,7 +42,7 @@ if (isset($_POST['update_room'])) {
     if ($check->num_rows > 0) {
         $error = "Room number already exists!";
     } else {
-        $sql = "UPDATE rooms SET room_number='$room_number', capacity='$capacity' WHERE room_id=$id";
+        $sql = "UPDATE rooms SET room_number='$room_number', room_type='$room_type', capacity='$capacity' WHERE room_id=$id";
         if ($conn->query($sql) === TRUE) {
             $success = "Room updated successfully!";
         } else {
@@ -96,6 +98,7 @@ $rooms = $conn->query("SELECT * FROM rooms ORDER BY room_id DESC");
                         <tr>
                             <th>#</th>
                             <th>Room Number</th>
+                            <th>Room Type</th>
                             <th>Capacity</th>
                             <th>Actions</th>
                         </tr>
@@ -106,6 +109,7 @@ $rooms = $conn->query("SELECT * FROM rooms ORDER BY room_id DESC");
                             <tr>
                                 <td><?php echo $i++; ?></td>
                                 <td><?php echo htmlspecialchars($row['room_number']); ?></td>
+                                <td><?php echo htmlspecialchars($row['room_type']); ?></td>
                                 <td><?php echo htmlspecialchars($row['capacity']); ?></td>
                                 <td>
                                     <!-- Edit Button triggers modal -->
@@ -134,6 +138,14 @@ $rooms = $conn->query("SELECT * FROM rooms ORDER BY room_id DESC");
                                                 <div class="mb-3">
                                                     <label class="form-label">Room Number</label>
                                                     <input type="text" name="room_number" class="form-control" value="<?php echo htmlspecialchars($row['room_number']); ?>" required>
+                                                </div>
+                                                <div class="mb-3">
+                                                    <label class="form-label">Room Type</label>
+                                                    <select name="room_type" class="form-select" required>
+                                                        <option value="">Select Type</option>
+                                                        <option value="Single" <?php echo $row['room_type'] == 'Single' ? 'selected' : ''; ?>>Single</option>
+                                                        <option value="Shared" <?php echo $row['room_type'] == 'Shared' ? 'selected' : ''; ?>>Shared</option>
+                                                    </select>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label class="form-label">Capacity</label>
@@ -169,6 +181,14 @@ $rooms = $conn->query("SELECT * FROM rooms ORDER BY room_id DESC");
                     <div class="mb-3">
                         <label class="form-label">Room Number</label>
                         <input type="text" name="room_number" class="form-control" required>
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Room Type</label>
+                        <select name="room_type" class="form-select" required>
+                            <option value="">Select Type</option>
+                            <option value="Single">Single</option>
+                            <option value="Shared">Shared</option>
+                        </select>
                     </div>
                     <div class="mb-3">
                         <label class="form-label">Capacity</label>

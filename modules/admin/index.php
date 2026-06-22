@@ -72,7 +72,7 @@ $total_complaints = $conn->query("SELECT COUNT(*) AS count FROM complaints")->fe
                         <i class="fas fa-comment-dots fa-2x text-danger mb-2"></i>
                         <h5 class="card-title">Complaints</h5>
                         <p class="card-text"><strong><?php echo $total_complaints; ?></strong> submitted</p>
-                        <a href="<?php echo BASE_URL; ?>modules/complaints/manage_complaints.php" class="btn btn-outline-danger btn-sm">
+                        <a href="<?php echo BASE_URL; ?>modules/admin/manage_complaints.php" class="btn btn-outline-danger btn-sm">
                             Manage Complaints
                         </a>
                     </div>
@@ -84,7 +84,7 @@ $total_complaints = $conn->query("SELECT COUNT(*) AS count FROM complaints")->fe
                         <i class="fas fa-chart-line fa-2x text-secondary mb-2"></i>
                         <h5 class="card-title">Reports</h5>
                         <p class="card-text">Generate system reports</p>
-                        <a href="<?php echo BASE_URL; ?>modules/reports/index.php" class="btn btn-outline-secondary btn-sm">
+                        <a href="<?php echo BASE_URL; ?>modules/admin/manage_reports.php" class="btn btn-outline-secondary btn-sm">
                             View Reports
                         </a>
                     </div>

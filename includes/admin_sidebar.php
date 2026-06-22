@@ -23,7 +23,7 @@ if (!isset($_SESSION['user']) || $_SESSION['role'] != "admin") {
             <li><a href="<?php echo BASE_URL; ?>modules/admin/manage_rooms.php" class="nav-link text-white"><i class="fas fa-door-open me-2"></i> Manage Rooms</a></li>
             <li><a href="<?php echo BASE_URL; ?>modules/admin/manage_payments.php" class="nav-link text-white"><i class="fas fa-credit-card me-2"></i> Manage Payments</a></li>
             <li><a href="<?php echo BASE_URL; ?>modules/admin/manage_complaints.php" class="nav-link text-white"><i class="fas fa-comment-dots me-2"></i> Complaints</a></li>
-            <li><a href="<?php echo BASE_URL; ?>modules/admin/reports.php" class="nav-link text-white"><i class="fas fa-chart-line me-2"></i> Reports</a></li>
+            <li><a href="<?php echo BASE_URL; ?>modules/admin/manage_reports.php" class="nav-link text-white"><i class="fas fa-chart-line me-2"></i> Reports</a></li>
         </ul>
         <hr>
         <a href="<?php echo BASE_URL; ?>auth/logout.php" class="btn btn-danger w-100"><i class="fas fa-sign-out-alt"></i> Logout</a>

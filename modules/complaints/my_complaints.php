@@ -4,7 +4,7 @@ include("../../config/database.php");
 include("../../includes/header.php");
 include("../../includes/sidebar.php");
 
-// 🔐 AUTH CHECK
+// AUTH CHECK
 if (!isset($_SESSION['user']) || $_SESSION['role'] != "student") {
     header("Location: ../../auth/login.php");
     exit();
@@ -12,7 +12,7 @@ if (!isset($_SESSION['user']) || $_SESSION['role'] != "student") {
 
 $student_id = $_SESSION['user_id'];
 
-// 🔷 SUBMIT COMPLAINT (SECURE)
+// SUBMIT COMPLAINT (SECURE)
 if (isset($_POST['submit_complaint'])) {
 
     $issue = trim($_POST['issue']);
@@ -38,7 +38,7 @@ if (isset($_POST['submit_complaint'])) {
     }
 }
 
-// 🔷 FETCH COMPLAINTS
+// FETCH COMPLAINTS
 $complaints = $conn->query("
 SELECT * FROM complaints 
 WHERE student_id=$student_id 
@@ -53,7 +53,7 @@ ORDER BY complaint_id DESC
         <p class="text-muted">Submit and track your complaints</p>
         <hr>
 
-        <!-- 🔷 ALERTS -->
+        <!-- ALERTS -->
         <?php if (isset($success)) { ?>
             <div class="alert alert-success auto-dismiss"><?php echo $success; ?></div>
         <?php } ?>
@@ -62,7 +62,7 @@ ORDER BY complaint_id DESC
             <div class="alert alert-danger auto-dismiss"><?php echo $error; ?></div>
         <?php } ?>
 
-        <!-- 🔷 SUBMIT FORM -->
+        <!-- SUBMIT FORM -->
         <div class="card shadow-sm border-0 mb-4">
             <div class="card-header bg-primary text-white">
                 Submit Complaint
@@ -91,7 +91,7 @@ ORDER BY complaint_id DESC
             </div>
         </div>
 
-        <!-- 🔷 HISTORY -->
+        <!-- HISTORY -->
         <div class="card shadow-sm border-0">
             <div class="card-header bg-secondary text-white">
                 My Complaints History
@@ -159,7 +159,7 @@ ORDER BY complaint_id DESC
     </div>
 </div>
 
-<!-- 🔷 AUTO DISMISS ALERT -->
+<!-- AUTO DISMISS ALERT -->
 <script>
     setTimeout(() => {
         document.querySelectorAll(".auto-dismiss").forEach(el => {
